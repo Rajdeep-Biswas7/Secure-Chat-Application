@@ -155,9 +155,9 @@ def _recv_exact(sock, n: int) -> bytes | None:
     while len(buf) < n:
         chunk = sock.recv(n - len(buf))
         if not chunk:
-            return None if not buf else (_ for _ in ()).throw(
-                ConnectionError("Partial read – connection lost")
-            )
+            if not buf:
+                return None  # clean EOF before any data
+            raise ConnectionError("Partial read – connection lost")
         buf += chunk
     return buf
 

@@ -25,6 +25,11 @@ import time
 import unittest
 import uuid
 
+# Fix Windows console encoding for Unicode characters
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # ── Ensure project root is on the path ────────────────────────────────────────
 ROOT = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ROOT)

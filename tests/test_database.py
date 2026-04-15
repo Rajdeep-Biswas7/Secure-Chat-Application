@@ -92,14 +92,8 @@ class TestSessions:
 
 class TestMessages:
     def setup_method(self):
-        self.uid1 = create_user(f"msguser_{os.urandom(4).hex()}", "h", "s", _TMP_DB)
-        self.uid2 = create_user(f"msguser_{os.urandom(4).hex()}", "h", "s", _TMP_DB)
-        self.uname1 = get_user_by_username(
-            get_user_by_username.__module__  # dummy; we'll look up below
-        ) if False else None
-        # Re-fetch by user_id is not in db.py, so use username-based fixture
-        self.uname1 = f"msguser_fetched_{os.urandom(3).hex()}"
-        self.uname2 = f"msgpeer_{os.urandom(3).hex()}"
+        self.uname1 = f"msguser_{os.urandom(4).hex()}"
+        self.uname2 = f"msgpeer_{os.urandom(4).hex()}"
         self.uid_a  = create_user(self.uname1, "h", "s", _TMP_DB)
         self.uid_b  = create_user(self.uname2, "h", "s", _TMP_DB)
 
